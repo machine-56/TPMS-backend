@@ -15,6 +15,7 @@ const Schema = mongoose.Schema;
 var newWorkOrderSchema = new Schema({
     date:String,
     partner:String,
+    uid:String,
     program:String,
     topic:String,
     mode:String,
