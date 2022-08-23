@@ -13,11 +13,7 @@ mongoose.connect(uri,{
 const Schema = mongoose.Schema;
 
 var newInvoiceSchema = new Schema({
-    woid:String,
-    invono:String,
-    invodate:String,
-    duedate:Date,
-    file:String
+    
 })
 
 var invoicedata = new mongoose.model('invoice',newInvoiceSchema);
