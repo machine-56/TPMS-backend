@@ -19,6 +19,6 @@ var NewUserSchema = new Schema({
     post:String
 })
 
-var Userdata = new mongoose.model('user',NewUserSchema);
+var newUserdata = new mongoose.model('newUsers',NewUserSchema);
 
-module.exports = Userdata
+module.exports = newUserdata
