@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const uri = "";
  mongoose.connect(uri,{
      useNewUrlParser: true,
-     newUnifiedTopology: true
+     useUnifiedTopology: true
  })
  .then(()=>{
      console.log('DB connected : work order');
@@ -10,7 +10,6 @@ const uri = "";
  .catch(()=>{
      console.error();
  })
-mongoose.connect(uri);
 const Schema = mongoose.Schema;
 
 var CounterSchema = new Schema({

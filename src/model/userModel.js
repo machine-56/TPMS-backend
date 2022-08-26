@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uri = "";
+const uri = "mongodb+srv://superadmin:F5nxY3vdwVsNg0uq@tpmsp-db.s5zticr.mongodb.net/TPMS";
 mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -8,7 +8,7 @@ mongoose.connect(uri,{
     console.log('DB connected : user');
 })
 .catch(()=>{
-    console.error();
+    console.error(Error);
 })
 const Schema = mongoose.Schema;
 

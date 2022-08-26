@@ -1,6 +1,6 @@
 const express = require('express');
 const loginRouter = express.Router();
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const userdata = require('../model/userModel');
 
 loginRouter.post('/',(req,res)=>{
@@ -28,3 +28,5 @@ loginRouter.post('/',(req,res)=>{
         }
     })
 })
+
+module.exports = loginRouter
