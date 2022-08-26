@@ -30,9 +30,8 @@ var newWorkOrderSchema = new Schema({
     wo_status:String
 
 })
-q=[
-]
 
-var workOrderdata = new mongoose.model('workOrder',newWorkOrderSchema);
+
+var workOrderdata = new mongoose.model('workorders',newWorkOrderSchema,'workorders');
 
 module.exports = workOrderdata
