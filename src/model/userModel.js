@@ -8,7 +8,7 @@ mongoose.connect(uri,{
     console.log('DB connected : user');
 })
 .catch(()=>{
-    console.error();
+    console.error(Error);
 })
 const Schema = mongoose.Schema;
 

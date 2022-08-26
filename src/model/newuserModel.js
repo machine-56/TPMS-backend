@@ -8,18 +8,17 @@ mongoose.connect(uri,{
     console.log('DB connected : newuser');
 })
 .catch(()=>{
-    console/log('error : newuser');
-    // console.error();
+    console.error(Error);
 })
 const Schema = mongoose.Schema;
 
-var NewUserSchema = new Schema({
+var NewApvUserSchema = new Schema({
     name:String,
     uname:String,
     pwd:String,
     post:String
 })
 
-var newUserdata = new mongoose.model('newuserdata',NewUserSchema);
+var ApvUserdata = new mongoose.model('apvuserdata',NewApvUserSchema);
 
-module.exports = newUserdata
+module.exports = ApvUserdata

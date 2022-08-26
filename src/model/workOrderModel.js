@@ -1,18 +1,18 @@
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://admin:fP0q2vmEmkdbplTP@tpmsp.owpkdym.mongodb.net/TPMSP";
+const uri = "mongodb+srv://admin:fP0q2vmEmkdbplTP@tpmsp.owpkdym.mongodb.net/MDB";
 mongoose.connect(uri,{
     useNewUrlParser: true,
-    newUnifiedTopology: true
+    useUnifiedTopology: true
 })
 .then(()=>{
     console.log('DB connected : work order');
 })
 .catch(()=>{
-    console.error();
+    console.error(Error);
 })
 const Schema = mongoose.Schema;
 
-var newWorkOrderSchema = new Schema({
+var NewWorkOrderSchema = new Schema({
     woid:String,
     issue_date : Date,
     partner_name : String,
@@ -31,6 +31,6 @@ var newWorkOrderSchema = new Schema({
 
 })
 
-var workOrderdata = new mongoose.model('workorderdata',newWorkOrderSchema);
+var WorkOrderdata = new mongoose.model('workorderdata',NewWorkOrderSchema);
 
-module.exports = workOrderdata
+module.exports = WorkOrderdata

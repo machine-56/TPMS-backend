@@ -8,22 +8,15 @@ mongoose.connect(uri,{
     console.log('DB connected : partner');
 })
 .catch(()=>{
-    console.log('Error : partner');
-    // console.error();
+    console.error(Error);
 })
 const Schema = mongoose.Schema;
 
 var NewPartnerSchema = new Schema({
     name:String,
-    username:String,
+    uname:String,
     pwd:String,
-    post:String,
-    id:String,
-    pan:String,
-    email:String,
-    phno:Number,
-    company:String
-
+    post:String
 })
 
 var Partnerdata = new mongoose.model('partner',NewPartnerSchema);

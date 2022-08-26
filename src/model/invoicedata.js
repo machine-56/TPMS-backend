@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://admin:fP0q2vmEmkdbplTP@tpmsp.owpkdym.mongodb.net/TPMSP";
+const uri = "mongodb+srv://admin:fP0q2vmEmkdbplTP@tpmsp.owpkdym.mongodb.net/MDB";
 mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -8,14 +8,14 @@ mongoose.connect(uri,{
     console.log('DB connected : invoice');
 })
 .catch(()=>{
-    console.error();
+    console.error(Error);
 })
 const Schema = mongoose.Schema;
 
-var newInvoiceSchema = new Schema({
+var NewInvoiceSchema = new Schema({
     
 })
 
-var invoicedata = new mongoose.model('invoicedata',newInvoiceSchema);
+var Invoicedata = new mongoose.model('invoicedata',NewInvoiceSchema);
 
-module.exports = invoicedata
+module.exports = Invoicedata
