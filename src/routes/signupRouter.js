@@ -3,6 +3,7 @@ const signupRouter = express.Router();
 const newUserdata = require("../model/newuserModel");
 
 signupRouter.post("/", (req, res) => {
+  // console.log(req);
   var newUser = {
     name: req.body.fullname,
     uname: req.body.uname,
