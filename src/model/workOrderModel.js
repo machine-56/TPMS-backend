@@ -33,4 +33,4 @@ var NewWorkOrderSchema = new Schema({
 
 var WorkOrderdata = new mongoose.model('workorderdata',NewWorkOrderSchema);
 
-module.exports = WorkOrderdata
+module.exports = WorkOrderdata;
