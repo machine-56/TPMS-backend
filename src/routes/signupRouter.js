@@ -17,3 +17,5 @@ signupRouter.post('/',(req,res)=>{
     user.save();
     res.status(200).send()
 })
+
+module.exports = signupRouter
