@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
-const uri = "";
+const uri = "mongodb+srv://admin:fP0q2vmEmkdbplTP@tpmsp.owpkdym.mongodb.net/TPMSP";
 mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 .then(()=>{
-    console.log('DB connected : user');
+    console.log('DB connected : newuser');
 })
 .catch(()=>{
-    console.error();
+    console/log('error : newuser');
+    // console.error();
 })
 const Schema = mongoose.Schema;
 
@@ -19,6 +20,6 @@ var NewUserSchema = new Schema({
     post:String
 })
 
-var newUserdata = new mongoose.model('newUsers',NewUserSchema);
+var newUserdata = new mongoose.model('newuserdata',NewUserSchema);
 
 module.exports = newUserdata

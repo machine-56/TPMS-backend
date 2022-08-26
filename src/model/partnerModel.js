@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
-const uri = "";
+const uri = "mongodb+srv://admin:fP0q2vmEmkdbplTP@tpmsp.owpkdym.mongodb.net/TPMSP";
 mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 .then(()=>{
-    console.log('DB connected : user');
+    console.log('DB connected : partner');
 })
 .catch(()=>{
-    console.error();
+    console.log('Error : partner');
+    // console.error();
 })
 const Schema = mongoose.Schema;
 
@@ -25,6 +26,6 @@ var NewPartnerSchema = new Schema({
 
 })
 
-var Partnerdata = new mongoose.model('user',NewPartnerSchema);
+var Partnerdata = new mongoose.model('partner',NewPartnerSchema);
 
 module.exports = Partnerdata

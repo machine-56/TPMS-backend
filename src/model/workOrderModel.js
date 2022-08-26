@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uri = "";
+const uri = "mongodb+srv://admin:fP0q2vmEmkdbplTP@tpmsp.owpkdym.mongodb.net/TPMSP";
 mongoose.connect(uri,{
     useNewUrlParser: true,
     newUnifiedTopology: true
@@ -30,9 +30,7 @@ var newWorkOrderSchema = new Schema({
     wo_status:String
 
 })
-q=[
-]
 
-var workOrderdata = new mongoose.model('workOrder',newWorkOrderSchema);
+var workOrderdata = new mongoose.model('workorderdata',newWorkOrderSchema);
 
 module.exports = workOrderdata

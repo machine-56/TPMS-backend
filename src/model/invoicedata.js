@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uri = "";
+const uri = "mongodb+srv://admin:fP0q2vmEmkdbplTP@tpmsp.owpkdym.mongodb.net/TPMSP";
 mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -16,6 +16,6 @@ var newInvoiceSchema = new Schema({
     
 })
 
-var invoicedata = new mongoose.model('invoice',newInvoiceSchema);
+var invoicedata = new mongoose.model('invoicedata',newInvoiceSchema);
 
 module.exports = invoicedata
