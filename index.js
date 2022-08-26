@@ -1,40 +1,44 @@
-const express =  require('express');
-const cors = require('cors');
-const path = require('path');
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+// const path = require("path");
 
-const userdata = require('./src/model/userModel');
-const workOrderdata = require('./src/model/workOrderModel')
-const invoicedata = require('./src/model/invoicedata')
+// const userdata = require("./src/model/userModel");
+// const workOrderdata = require("./src/model/workOrderModel");
+// const invoicedata = require("./src/model/invoicedata");
 
-const PORT = process.env.PORT || 4156
-const app = new express;
+const PORT = process.env.PORT || 4156;
+const app = express();
 
-const loginRouter = require('./src/routes/loginRouter');
-const signupRouter = require('./src/routes/signupRouter');
-const adminRouter = require('./src/routes/adminRouter');
-const financeRouter = require('./src/routes/financeRouter');
-const partnerRouter = require('./src/routes/partnerRouter');
-
+const loginRouter = require("./src/routes/loginRouter");
+const signupRouter = require("./src/routes/signupRouter");
+// const adminRouter = require("./src/routes/adminRouter");
+const financeRouter = require("./src/routes/financeRouter");
+// const partnerRouter = require("./src/routes/partnerRouter");
 
 // app.use(express.static(''))
 
 app.use(cors());
-app.use(express.urlencoded({extended: true}));
-app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.json());
 
-app.use('/api/login', loginRouter);
-app.use('/api/signup', signupRouter);
-app.use('/api/admin', adminRouter);
-app.use('/api/finance', financeRouter);
-app.use('/api/partner', partnerRouter);
-
-
-
+app.use("/api/login", loginRouter);
+app.use("/api/signup", signupRouter);
+// app.use("/api/admin", adminRouter);
+app.use("/api/finance", financeRouter);
+// app.use("/api/partner", partnerRouter);
 
 // app.get('/*', function(req, res) {
 //     res.sendFile(path.join(__dirname + '/dist/frontend/index.html'))
 // });
 
-app.listen(PORT,()=>{
-    console.log(`app listening to port : ${PORT}`)
+app.get("/", (req, res) => {
+  console.log("index.js get reqst running");
+
+  res.send("Hello from Home Page.");
+});
+
+app.listen(PORT, () => {
+  console.log(`app listening to port : ${PORT}`);
 });
