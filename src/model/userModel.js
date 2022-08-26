@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const uri = "mongodb+srv://superadmin:F5nxY3vdwVsNg0uq@tpmsp-db.s5zticr.mongodb.net/TPMS";
 mongoose.connect(uri,{
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
 })
 .then(()=>{
     console.log('DB connected : user');
@@ -21,4 +21,4 @@ var NewUserSchema = new Schema({
 
 var Userdata = new mongoose.model('user',NewUserSchema);
 
-module.exports = Userdata
+module.exports = Userdata;

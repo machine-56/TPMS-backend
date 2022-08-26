@@ -29,4 +29,4 @@ loginRouter.post('/',(req,res)=>{
     })
 })
 
-module.exports = loginRouter
+module.exports = loginRouter;

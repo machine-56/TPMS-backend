@@ -57,4 +57,4 @@ financeRouter.get('/payment/:id',(req,res)=>{
     })
 })
 
-module.exports = financeRouter
+module.exports = financeRouter;

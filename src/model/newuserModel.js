@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const uri = "mongodb+srv://superadmin:F5nxY3vdwVsNg0uq@tpmsp-db.s5zticr.mongodb.net/TPMS";
 mongoose.connect(uri,{
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
 })
 .then(()=>{
     console.log('DB connected : newuser');
@@ -13,12 +13,15 @@ mongoose.connect(uri,{
 const Schema = mongoose.Schema;
 
 var NewApvUserSchema = new Schema({
-    name:String,
-    uname:String,
-    pwd:String,
-    post:String
+  name: String,
+  uname: String,
+  email: String,
+  pwd: String,
+  post: String,
+  compname: String,
+  phoneNo: Number,
 })
 
 var ApvUserdata = new mongoose.model('apvuserdata',NewApvUserSchema);
 
-module.exports = ApvUserdata
+module.exports = ApvUserdata;
