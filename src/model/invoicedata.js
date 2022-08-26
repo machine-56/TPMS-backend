@@ -1,20 +1,21 @@
-const mongoose = require("mongoose");
-const uri = "mongodb://localhost:27017/tpms";
-mongoose
-  .connect(uri, {
+const mongoose = require('mongoose');
+const uri = "mongodb+srv://superadmin:F5nxY3vdwVsNg0uq@tpmsp-db.s5zticr.mongodb.net/TPMS";
+mongoose.connect(uri,{
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("DB connected : invoice");
-  })
-  .catch(() => {
-    console.error();
-  });
+    useUnifiedTopology: true
+})
+.then(()=>{
+    console.log('DB connected : invoice');
+})
+.catch(()=>{
+    console.error(Error);
+})
 const Schema = mongoose.Schema;
 
-var newInvoiceSchema = new Schema({});
+var NewInvoiceSchema = new Schema({
+    
+})
 
-var invoicedata = mongoose.model("invoice", newInvoiceSchema);
+var Invoicedata = new mongoose.model('invoicedata',NewInvoiceSchema);
 
-module.exports = invoicedata;
+module.exports = Invoicedata

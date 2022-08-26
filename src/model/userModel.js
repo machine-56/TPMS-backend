@@ -1,28 +1,24 @@
-const mongoose = require("mongoose");
-const uri = "mongodb://localhost:27017/tpms";
-mongoose
-  .connect(uri, {
+const mongoose = require('mongoose');
+const uri = "mongodb+srv://superadmin:F5nxY3vdwVsNg0uq@tpmsp-db.s5zticr.mongodb.net/TPMS";
+mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("DB connected : user");
-  })
-  .catch(() => {
-    console.error();
-  });
+})
+.then(()=>{
+    console.log('DB connected : user');
+})
+.catch(()=>{
+    console.error(Error);
+})
 const Schema = mongoose.Schema;
 
 var NewUserSchema = new Schema({
-  fullname: String,
-  uname: String,
-  email: String,
-  pwd: String,
-  post: String,
-  compname: String,
-  phoneNo: Number,
-});
+    name:String,
+    uname:String,
+    pwd:String,
+    post:String
+})
 
-var Userdata = mongoose.model("user", NewUserSchema);
+var Userdata = new mongoose.model('user',NewUserSchema);
 
 module.exports = Userdata;

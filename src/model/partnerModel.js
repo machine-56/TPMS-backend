@@ -1,21 +1,20 @@
-const mongoose = require("mongoose");
-const uri = "mongodb://localhost:27017/tpms";
-mongoose
-  .connect(uri, {
+const mongoose = require('mongoose');
+const uri = "mongodb+srv://superadmin:F5nxY3vdwVsNg0uq@tpmsp-db.s5zticr.mongodb.net/TPMS";
+mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("DB connected :partner");
-  })
-  .catch(() => {
-    console.error();
-  });
+})
+.then(()=>{
+    console.log('DB connected : partner');
+})
+.catch(()=>{
+    console.error(Error);
+})
 const Schema = mongoose.Schema;
 
 var NewPartnerSchema = new Schema({
   name: String,
-  username: String,
+  uname: String,
   pwd: String,
   post: String,
   id: String,
@@ -23,8 +22,8 @@ var NewPartnerSchema = new Schema({
   email: String,
   phno: Number,
   company: String,
-});
+})
 
-var Partnerdata = mongoose.model("user", NewPartnerSchema);
+var Partnerdata = new mongoose.model('partner',NewPartnerSchema);
 
 module.exports = Partnerdata;
