@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const uri = "mongodb+srv://superadmin:F5nxY3vdwVsNg0uq@tpmsp-db.s5zticr.mongodb.net/TPMS";
 mongoose.connect(uri,{
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
 })
 .then(()=>{
     console.log('DB connected : work order');
@@ -27,10 +27,10 @@ var NewWorkOrderSchema = new Schema({
     panNo : String,
     amount:Number,
     payterms : String,
-    wo_status:String
+    wo_status:String,
 
-})
+});
 
 var WorkOrderdata = new mongoose.model('workorderdata',NewWorkOrderSchema);
 
-module.exports = WorkOrderdata
+module.exports = WorkOrderdata;
