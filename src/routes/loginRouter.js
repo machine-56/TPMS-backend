@@ -21,7 +21,7 @@ loginRouter.post("/", (req, res) => {
       // let payload = {subject : user.name+user.pwd}
       // let token = jwt.sign(payload,'secrectkey')
       // retnvalue.token=token;
-      res.send({ post });
+      res.send({ token, post });
     } else {
       res.status(404).send();
     }
