@@ -13,6 +13,10 @@ mongoose.connect(uri,{
 const Schema = mongoose.Schema;
 
 var NewInvoiceSchema = new Schema({
+    woid:String,
+    invoice_id:String,
+    partner_name:String,
+    amount:String,
     
 })
 

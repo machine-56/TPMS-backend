@@ -48,5 +48,23 @@ financeRouter.delete('/workorder/remove/:id', (req,res)=>{
     ])
 })
 
+// payment remittance detials
+financeRouter.get('/payment', (req,res)=>{
+    invoicedata.find().then((data)=>{
+        res.send(data);
+    })
+    .catch(()=>{
+        console.error();
+        res.send();
+    })
+})
+
+// pay
+financeRouter.put('/payment/pay', (req,res)=>{
+    let id = req.body.id;
+    invoicedata.findOneAndUpdate({"_id":id},
+    {$set:{status:'paid'},})
+
+})
 
 module.exports = financeRouter;
