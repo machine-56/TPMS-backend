@@ -13,7 +13,7 @@ mongoose.connect(uri,{
 const Schema = mongoose.Schema;
 
 var NewWorkOrderSchema = new Schema({
-    woid:String,
+    woid : String,
     issue_date : Date,
     partner_name : String,
     partner_id : String,
@@ -25,10 +25,9 @@ var NewWorkOrderSchema = new Schema({
     GSTno : String,
     tax_type : String,
     panNo : String,
-    amount:Number,
+    amount : Number,
     payterms : String,
-    wo_status:String,
-
+    wo_status : String,
 });
 
 var WorkOrderdata = new mongoose.model('workorderdata',NewWorkOrderSchema);

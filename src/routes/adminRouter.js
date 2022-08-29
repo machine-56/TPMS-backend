@@ -41,7 +41,7 @@ adminRouter.post('/insert',function(req,res){
  });
 //delete a workorder
 adminRouter.delete('workorders/remove/:id',(req,res)=>{
-    id = req.params.id;
+    let id = req.params.id;
     WorkorderData.findByIdAndDelete({"_id":id})
     .then(()=>{
         console.log('success')
