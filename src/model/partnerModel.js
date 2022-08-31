@@ -22,6 +22,7 @@ var NewPartnerSchema = new Schema({
   email: String,
   phno: Number,
   company: String,
+  image:String
 })
 
 var Partnerdata = new mongoose.model('partner',NewPartnerSchema);

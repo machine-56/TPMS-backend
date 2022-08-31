@@ -2,6 +2,10 @@ const express = require('express');
 const adminRouter = express.Router();
 const WorkorderData = require('../model/workOrderModel');
 const CounterData = require('../model/woidgenerationModel');
+const aprUserData = require('../model/newuserModel');
+const UserData=require('../model/userModel.js');
+const partnerData=require('../model/partnerModel');
+const partnerCounterData = require('../model/pidgenerationModel');
 //insert a workorder
 adminRouter.post('/insert',function(req,res){  
     //console.log(req.body);
@@ -65,7 +69,67 @@ adminRouter.get('/workorders',function(req,res){
        res.send(workorders);
      });
    });
+//list users registered
+adminRouter.get('/users',function(req,res){
+    aprUserData.find()
+    .then(function(users){
+        res.send(users);
+     });
+  });
+// Deny user
+adminRouter.delete('/users/remove/:id', (req,res)=>{
+    let id = req.params.id;
+    console.log(`dropped: ${id}`);
+    aprUserData.findOneAndDelete({"_id":id}).then(()=>[
+        res.status(200).send()
+    ])
+});
+adminRouter.post('/users/apv',(req,res)=>{
+console.log(req.body);
+const userDetail=req.body.id;
 
-
+if(userDetail.post=='Partner'){
+    partnerCounterData.findOneAndUpdate(
+        {id:"autoval"},
+        {"$inc":{"seq":1}},
+        {new:true},(err,cd)=>{
+            let seqId;
+            if(cd==null){
+                const newval=new CounterData({id:"autoval",seq:1})
+                newval.save();
+                seqId=1;
+            }else{
+                seqId=cd.seq;
+            }
+            var partner={
+                name:userDetail.name,
+                uname:userDetail.uname,
+                email:userDetail.email,
+                pwd:userDetail.pwd,
+                post:userDetail.post,
+                company:userDetail.compname,
+                phno:userDetail.phoneNo,
+                image:'',
+                pan:'',
+                id:'ptr-'+seqId
+            }
+           var partnerDet = new partnerData(partner);
+           partnerDet.save();
+        }
+    )
+   
+}
+    var user={
+        name:userDetail.name,
+        uname:userDetail.uname,
+        pwd:userDetail.pwd,
+        post:userDetail.post
+    }
+    var userDet = new UserData(user);
+    userDet.save();
+    aprUserData.findOneAndDelete({"_id":userDetail._id}).then(()=>[
+        res.status(200).send()
+    ])
+})
  module.exports=adminRouter;
 
