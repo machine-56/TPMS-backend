@@ -17,7 +17,7 @@ var NewInvoiceSchema = new Schema({
     invoice_id:String,
     partner_name:String,
     amount:String,
-    
+    due_date:Date, 
 })
 
 var Invoicedata = new mongoose.model('invoicedata',NewInvoiceSchema);
