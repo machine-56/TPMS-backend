@@ -23,6 +23,7 @@ var NewInvoiceSchema = new Schema({
   invodate: Date,
   duedate: Date,
   fileName: String,
+  paystatus:String,
 });
 
 var Invoicedata = new mongoose.model("invoicedata", NewInvoiceSchema);

@@ -9,18 +9,18 @@ const partnerCounterData = require('../model/pidgenerationModel');
 //insert a workorder
 adminRouter.post('/insert',function(req,res){  
     //console.log(req.body);
-    CounterData.findOneAndUpdate(
-     {id:"autoval"},
-     {"$inc":{"seq":1}},
-     {new:true},(err,cd)=>{
-         let seqId;
-         if(cd==null){
-             const newval=new CounterData({id:"autoval",seq:1})
-             newval.save();
-             seqId=1;
-         }else{
-             seqId=cd.seq;
-         }
+    // CounterData.findOneAndUpdate(
+    //  {id:"autoval"},
+    //  {"$inc":{"seq":1}},
+    //  {new:true},(err,cd)=>{
+    //      let seqId;
+    //      if(cd==null){
+    //          const newval=new CounterData({id:"autoval",seq:1})
+    //          newval.save();
+    //          seqId=1;
+    //      }else{
+    //          seqId=cd.seq;
+    //      }
          var workorder = {       
             partner_name : req.body.workorder.p_name,
             partner_id : req.body.workorder.p_id,
@@ -34,7 +34,7 @@ adminRouter.post('/insert',function(req,res){
             panNo :req.body.workorder.pan_no,
             payterms :req.body.workorder.pay_terms,
             amount :req.body.workorder.amount,
-            woid :'WO/'+req.body.workorder.p_name+'/woid-00'+seqId,
+            woid :'',
             issue_date :req.body.workorder.issue_date,
             wo_status :req.body.workorder.wo_status
         }       
@@ -42,7 +42,7 @@ adminRouter.post('/insert',function(req,res){
         workOrder.save();
      }
  )
- });
+//  });
 //delete a workorder
 adminRouter.delete('workorders/remove/:id',(req,res)=>{
     let id = req.params.id;
@@ -107,11 +107,11 @@ if(userDetail.post=='Partner'){
                 email:userDetail.email,
                 pwd:userDetail.pwd,
                 post:userDetail.post,
-                company:userDetail.compname,
-                phno:userDetail.phoneNo,
+                company:userDetail.company,
+                phoneNo:userDetail.phoneNo,
                 image:'',
                 pan:'',
-                id:'ptr-'+seqId
+                partner_id:'ptr-'+seqId
             }
            var partnerDet = new partnerData(partner);
            partnerDet.save();
@@ -123,7 +123,7 @@ if(userDetail.post=='Partner'){
         name:userDetail.name,
         uname:userDetail.uname,
         pwd:userDetail.pwd,
-        post:userDetail.post
+        post:userDetail.post,
     }
     var userDet = new UserData(user);
     userDet.save();

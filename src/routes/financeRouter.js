@@ -30,13 +30,26 @@ financeRouter.post('/workorder/each',(req,res)=>{
 // approve workrder
 financeRouter.put('/workorder/apv', (req,res)=>{
     let data = req.body.id;
-    console.log(data);
-    workorderdata.findOneAndUpdate({"_id":data},
-    {$set:{wo_status:'apvd'},})
-    .then((data)=>{
-        console.log(data)
-        res.send();
-    })
+    console.log(data);    //=================
+    CounterData.findOneAndUpdate(
+        {id:"autoval"},
+        {"$inc":{"seq":1}},
+        {new:true},(err,cd)=>{
+            let seqId;
+            if(cd==null){
+                const newval=new CounterData({id:"autoval",seq:1})
+                newval.save();
+                seqId=1;
+            }else{
+                seqId=cd.seq;
+            }
+            workorderdata.findOneAndUpdate({"_id":data},
+            {$set:{wo_status:'apvd', woid :'WO/'+req.body.workorder.p_name+'/woid-00'+seqId},})
+            .then((data)=>{
+                console.log(data)
+                res.send();
+        })
+    });
 })
 
 // Deny work order
@@ -65,6 +78,13 @@ financeRouter.put('/payment/pay', (req,res)=>{
     invoicedata.findOneAndUpdate({"_id":id},
     {$set:{status:'paid'},})
 
+})
+
+financeRouter.get('/invoice/:id', (req,res)=>{
+    let ui = req.params.id;
+    invoicedata.findOne({"fileName":ui+'.pdf'}).then((data)=>{
+        res.send();
+    })
 })
 
 module.exports = financeRouter;

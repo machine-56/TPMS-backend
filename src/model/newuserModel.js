@@ -20,9 +20,8 @@ var NewApvUserSchema = new Schema({
   email: String,
   pwd: String,
   post: String,
-  compname: String,
+  company: String,
   phoneNo: Number,
-  approve: Boolean,
 });
 
 var ApvUserdata = new mongoose.model("apvuserdata", NewApvUserSchema);

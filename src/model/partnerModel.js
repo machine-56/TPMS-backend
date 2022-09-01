@@ -19,11 +19,12 @@ var NewPartnerSchema = new Schema({
   uname: String,
   pwd: String,
   post: String,
-  pid: String,
+  partner_id: String,
   pan: String,
+  image:String,
   email: String,
-  phoneNo: Number,
-  compname: String,
+  phoneNo: String,
+  company: String,
 });
 
 var Partnerdata = new mongoose.model("partner", NewPartnerSchema);

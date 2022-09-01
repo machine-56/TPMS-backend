@@ -4,9 +4,7 @@ const jwt = require('jsonwebtoken');
 const userdata = require("../model/userModel");
 
 loginRouter.post("/", (req, res) => {
-  let post = "";
   let user = req.body;
-  var flag = false;
   // userdata.find().then((checkusr) => {
   //   for (let i = 0; i < userdata.length; i++) {
   //     if (checkusr[i].uname == user.uname && checkusr[i].pwd == user.pwd) {
@@ -39,7 +37,7 @@ loginRouter.post("/", (req, res) => {
       }else {
           let payload = {subject:username+password}
           let token = jwt.sign(payload,'secretKey')
-          res.status(200).send({token,post});
+          res.status(200).send({token,post,username});
         }
       }
       })

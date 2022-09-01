@@ -10,10 +10,9 @@ signupRouter.post("/", (req, res) => {
     uname: req.body.uname,
     email: req.body.email,
     pwd: req.body.pwd,
-    phoneNo: req.body.phoneNo,
-    compname: req.body.compname,
     post: req.body.post,
-    approve: req.body.approve,
+    company: req.body.compname,
+    phoneNo: req.body.phoneNo,
   };
   console.log(newUser);
   const user = new newUserdata(newUser);
@@ -21,11 +20,5 @@ signupRouter.post("/", (req, res) => {
 
   res.status(200).send();
 });
-// partner deatials sort out
-
-// if (newUser.post == "Partner" && newUser.approve ==true ) {
-//   const partner = new partnerData(newUser);
-//   partner.save();
-// }
 
 module.exports = signupRouter;
