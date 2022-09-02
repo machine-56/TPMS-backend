@@ -6,21 +6,10 @@ const aprUserData = require('../model/newuserModel');
 const UserData=require('../model/userModel.js');
 const partnerData=require('../model/partnerModel');
 const partnerCounterData = require('../model/pidgenerationModel');
+
 //insert a workorder
 adminRouter.post('/insert',function(req,res){  
-    //console.log(req.body);
-    // CounterData.findOneAndUpdate(
-    //  {id:"autoval"},
-    //  {"$inc":{"seq":1}},
-    //  {new:true},(err,cd)=>{
-    //      let seqId;
-    //      if(cd==null){
-    //          const newval=new CounterData({id:"autoval",seq:1})
-    //          newval.save();
-    //          seqId=1;
-    //      }else{
-    //          seqId=cd.seq;
-    //      }
+
          var workorder = {       
             partner_name : req.body.workorder.p_name,
             partner_id : req.body.workorder.p_id,
@@ -42,7 +31,7 @@ adminRouter.post('/insert',function(req,res){
         workOrder.save();
      }
  )
-//  });
+
 //delete a workorder
 adminRouter.delete('workorders/remove/:id',(req,res)=>{
     let id = req.params.id;
@@ -52,6 +41,7 @@ adminRouter.delete('workorders/remove/:id',(req,res)=>{
         res.send();
     })
    })
+   
 //list workorder
 adminRouter.get('/workorders',function(req,res){
     
