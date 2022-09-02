@@ -31,7 +31,6 @@ financeRouter.post("/workorder/each", (req, res) => {
 // approve workrder
 financeRouter.put("/workorder/apv", (req, res) => {
   let data = req.body.id;
-  console.log(data); //=================
   CounterData.findOneAndUpdate(
     { id: "autoval" },
     { $inc: { seq: 1 } },
@@ -47,9 +46,8 @@ financeRouter.put("/workorder/apv", (req, res) => {
       }
       workorderdata.findOneAndUpdate(
         { _id: data },
-        {$set: {wo_status: "apvd", woid: "WO/" + req.body.workorder.p_name + "/woid-00" + seqId,},})
-        .then((data) => {
-          console.log(data);
+        {$set: {wo_status: "apvd", woid: "WO/" + req.body.pname + "/woid-00" + seqId,},})
+        .then(() => {
           res.send();
         });
     }
@@ -59,7 +57,6 @@ financeRouter.put("/workorder/apv", (req, res) => {
 // Deny work order
 financeRouter.delete("/workorder/remove/:id", (req, res) => {
   let id = req.params.id;
-  console.log(`dropped: ${id}`);
   workorderdata.findOneAndDelete({ _id: id })
   .then(() => {
     res.status(200).send()
@@ -68,7 +65,7 @@ financeRouter.delete("/workorder/remove/:id", (req, res) => {
 
 // payment remittance detials
 financeRouter.get("/payment", (req, res) => {
-  invoicedata.find({"paystatus":"pending"})
+  invoicedata.find()
   .then((data) => {
     res.send(data);
   })
@@ -87,33 +84,10 @@ financeRouter.put("/payment/pay", (req, res) => {
   })
 });
 
+// invoice pdf
 financeRouter.get("/invoice/:id", function (req, res) {
   let id = req.params.id;
   res.sendFile(path.join(__dirname, `../../uploads/${id}`));
 });
 
 module.exports = financeRouter;
-
-
-// invoicedata
-//   .findOne({ invono: id })
-//   .then((data) => {
-//     res.send(`payment id: ${data}`);
-//   })
-//   .catch(() => {
-//     console.error();
-//     res.send();
-//   });
-// var options = {
-//   root: path.join(__dirname),
-// };
-
-// var fileName = "Hello.txt";
-// console.log(fileName);
-// res.sendFile(fileName, options, function (err) {
-//   if (err) {
-//     next(err);
-//   } else {
-//     console.log("Sent:", fileName);
-//   }
-// });

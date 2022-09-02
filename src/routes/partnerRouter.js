@@ -1,21 +1,45 @@
 const express = require("express");
 const partnerRouter = express.Router();
-const partnerdata = require("../model/partnerModel");
-const invoiceData = require("../model/invoicedata");
 const multer = require("multer");
 const path = require("path");
+const partnerdata = require("../model/partnerModel");
+const invoiceData = require("../model/invoicedata");
+const workorderdata = require('../model/workOrderModel')
 
-partnerRouter.get("/:id", (req, res) => {
+// get workorder
+partnerRouter.post('/workorder', (req,res)=>{
+  let uname = req.body.uname;
+  partnerdata.findOne({'uname':uname}).then((data)=>{
+    let uid = data.partner_id;
+    workorderdata.find({"partner_id":uid}).then((data)=>{
+      res.send(data);
+    })
+  })
+})
+
+// each Work order
+partnerRouter.post("/workorder/each", (req, res) => {
+  let wid = req.body.woid;
+  workorderdata.findOne({ woid: wid })
+  .then((data) => {
+    res.send(data);
+  })
+  .catch(() => {
+    res.send(Error).send();
+  });
+});
+
+// get profile
+partnerRouter.get("/profile/:id", (req, res) => {
   const uid = req.params.id;
-  console.log(`uid: ${uid}`);
   partnerdata.findOne({ "uname": uid }).then((data) => {
-    console.log(`backend ${data}`);
     res.send(data);
   });
 });
 
+
+// edit profile
 partnerRouter.put("/edit", (req, res) => {
-  console.log(req.body);
   (id = req.body._id),
     (image = req.body.image),
     (user = req.body.name),
@@ -50,6 +74,7 @@ partnerRouter.put("/edit", (req, res) => {
       });
 });
 
+// storing invoice
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads");
@@ -61,21 +86,21 @@ var storage = multer.diskStorage({
 
 var multipleUpload = multer({ storage: storage }).array("files");
 
+// invoice form data saving
 partnerRouter.post("/invoice", function (req, res) {
   var newInvoice = new invoiceData(req.body);
   newInvoice.save()
     .then((succ) => {
-      console.log(`backend: New invoice data added ${succ}`);  //======
       res.status(200).json({
         success: true,
         message: "Invoice saved successfully",
       });
     })
     .catch((err) => {
-      console.log("Invoice upload failed", error.message);  //========
     });
 });
 
+// pdf file saving
 partnerRouter.post("/multifiles", (req, res) => {
   multipleUpload(req, res, (err) => {
     if (err) {
