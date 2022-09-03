@@ -85,7 +85,7 @@ if(userDetail.post=='Partner'){
         {new:true},(err,cd)=>{
             let seqId;
             if(cd==null){
-                const newval=new CounterData({id:"autoval",seq:1})
+                const newval=new partnerCounterData({id:"autoval",seq:1})
                 newval.save();
                 seqId=1;
             }else{
