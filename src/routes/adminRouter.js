@@ -32,6 +32,13 @@ adminRouter.post('/insert',function(req,res){
      }
 )
 
+// fetch data for editing
+adminRouter.get('/edit/:id', (req,res)=>{
+    let uid = req.params.id;
+    WorkorderData.findOne({_id:uid}).then((data)=>{
+        res.send(data);
+    })
+})
 
 //  edit workorder
 adminRouter.put('/workorders/edit', (req,res)=>{
