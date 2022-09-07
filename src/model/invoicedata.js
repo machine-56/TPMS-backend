@@ -15,9 +15,6 @@ mongoose
 const Schema = mongoose.Schema;
 
 var NewInvoiceSchema = new Schema({
-  // invoice_id: String,
-  // partner_name: String,
-  // amount: String,
   woid: String,
   invono: String,
   invodate: Date,

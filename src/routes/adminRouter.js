@@ -42,23 +42,23 @@ adminRouter.get('/edit/:id', (req,res)=>{
 
 //  edit workorder
 adminRouter.put('/workorders/edit', (req,res)=>{
-    let uid = req.body.workorder.id;
+    let uid = req.body._id;
     WorkorderData.findByIdAndUpdate({_id:uid},{$set:{
-        partner_name : req.body.workorder.p_name,
-            partner_id : req.body.workorder.p_id,
-            program_name : req.body.workorder.tp_name,
-            traning_topics : req.body.workorder.t_topics,
-            date_start : req.body.workorder.start,
-            date_end :req.body.workorder.end,
-            mode :req.body.workorder.t_mode,
-            GSTno :req.body.workorder.GST,
-            tax_type :req.body.workorder.taxControl,
-            panNo :req.body.workorder.pan_no,
-            payterms :req.body.workorder.pay_terms,
-            amount :req.body.workorder.amount,
-            woid :req.body.workorder.woid,
-            issue_date :req.body.workorder.issue_date,
-            wo_status :req.body.workorder.wo_status
+        partner_name : req.body.p_name,
+            partner_id : req.body.p_id,
+            program_name : req.body.tp_name,
+            traning_topics : req.body.t_topics,
+            date_start : req.body.start,
+            date_end :req.body.end,
+            mode :req.body.t_mode,
+            GSTno :req.body.GST,
+            tax_type :req.body.taxControl,
+            panNo :req.body.pan_no,
+            payterms :req.body.pay_terms,
+            amount :req.body.amount,
+            woid :req.body.woid,
+            issue_date :req.body.issue_date,
+            wo_status :req.body.wo_status
     }}).then(()=>{
         res.send();
     })
