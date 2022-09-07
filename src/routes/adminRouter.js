@@ -188,8 +188,19 @@ adminRouter.put('/invoice/deny', (req,res)=>{
 adminRouter.get("/invoice/:id", function (req, res) {
     let id = req.params.id;
     res.sendFile(path.join(__dirname, `../../uploads/${id}`));
+});
+
+// payment remittance status
+// payment remittance detials
+adminRouter.get("/payment", (req, res) => {
+    invoiceData.find()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch(() => {
+      console.error();
+      res.send();
+    });
   });
-
-
  module.exports=adminRouter;
 
