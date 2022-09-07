@@ -1,5 +1,6 @@
 const express = require('express');
 const adminRouter = express.Router();
+var path = require("path");
 const invoiceData = require('../model/invoicedata')
 const WorkorderData = require('../model/workOrderModel');
 const aprUserData = require('../model/newuserModel');
@@ -161,7 +162,7 @@ if(userDetail.post=='Partner'){
 // collect invoice data
 adminRouter.get('/invoice', (req,res)=>{
     invoiceData.find().then((data)=>{
-        req.send();
+        res.send(data);
     })
 })
 
@@ -182,6 +183,12 @@ adminRouter.put('/invoice/deny', (req,res)=>{
         res.send();
     })
 })
+
+// invoice pdf
+adminRouter.get("/invoice/:id", function (req, res) {
+    let id = req.params.id;
+    res.sendFile(path.join(__dirname, `../../uploads/${id}`));
+  });
 
 
  module.exports=adminRouter;
