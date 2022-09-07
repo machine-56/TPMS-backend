@@ -190,7 +190,6 @@ adminRouter.get("/invoice/:id", function (req, res) {
     res.sendFile(path.join(__dirname, `../../uploads/${id}`));
 });
 
-// payment remittance status
 // payment remittance detials
 adminRouter.get("/payment", (req, res) => {
     invoiceData.find()
