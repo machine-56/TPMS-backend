@@ -65,7 +65,7 @@ financeRouter.delete("/workorder/remove/:id", (req, res) => {
 
 // payment remittance detials
 financeRouter.get("/payment", (req, res) => {
-  invoicedata.find()
+  invoicedata.find({"invoice_status":'apvd'})
   .then((data) => {
     res.send(data);
   })
