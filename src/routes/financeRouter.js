@@ -90,4 +90,24 @@ financeRouter.get("/invoice/:id", function (req, res) {
   res.sendFile(path.join(__dirname, `../../uploads/${id}`));
 });
 
+// set overdue status
+financeRouter.put('/invoice/overdue', (req,res)=>{
+  let uid = req.body.id;
+  invoicedata.findByIdAndUpdate(
+    {_id:uid},{$set:{paystatus:'overdue'}
+  }).then(()=>{
+    res.send();
+  })
+})
+
+// add due comment invoice
+financeRouter.put('/invoice/comment', (req,res)=>{
+  let invoAdd = req.body;
+  invoicedata.findByIdAndUpdate(
+    {_id:invoAdd.invoid},{$set:{comment:invoAdd.comment}
+  }).then(()=>{
+    res.send();
+  })
+})
+
 module.exports = financeRouter;
