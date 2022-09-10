@@ -4,7 +4,6 @@ const newUserdata = require("../model/newuserModel");
 // const partnerData = require("../model/partnerModel");
 
 signupRouter.post("/", (req, res) => {
-  // console.log(req);
   var newUser = {
     name: req.body.fullname,
     uname: req.body.uname,
@@ -14,7 +13,6 @@ signupRouter.post("/", (req, res) => {
     company: req.body.compname,
     phoneNo: req.body.phoneNo,
   };
-  console.log(newUser);
   const user = new newUserdata(newUser);
   user.save();
 

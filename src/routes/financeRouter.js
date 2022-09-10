@@ -78,7 +78,7 @@ financeRouter.get("/payment", (req, res) => {
 // pay
 financeRouter.put("/payment/pay", (req, res) => {
   let id = req.body.id;
-  invoicedata.findOneAndUpdate({ "_id": id }, { $set: { "paystatus": "paid" } })
+  invoicedata.findOneAndUpdate({ "_id": id }, { $set: { "paystatus": "Paid" } })
   .then(()=>{
     res.send();
   })
@@ -94,7 +94,7 @@ financeRouter.get("/invoice/:id", function (req, res) {
 financeRouter.put('/invoice/overdue', (req,res)=>{
   let uid = req.body.id;
   invoicedata.findByIdAndUpdate(
-    {_id:uid},{$set:{paystatus:'overdue'}
+    {_id:uid},{$set:{paystatus:'Overdue'}
   }).then(()=>{
     res.send();
   })

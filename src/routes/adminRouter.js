@@ -71,14 +71,13 @@ adminRouter.delete('workorders/remove/:id',(req,res)=>{
     let id = req.params.id;
     WorkorderData.findByIdAndDelete({"_id":id})
     .then(()=>{
-        console.log('success')
         res.send();
     })
    })
    
 //list workorder
 adminRouter.get('/workorders',function(req,res){
-    WorkorderData.find()
+    WorkorderData.find({"wo_status":'apvd'})
     .then(function(workorders){
         res.send(workorders);
     });
@@ -104,7 +103,6 @@ adminRouter.get('/users',function(req,res){
 // Deny user
 adminRouter.delete('/users/remove/:id', (req,res)=>{
     let id = req.params.id;
-    console.log(`dropped: ${id}`);
     aprUserData.findOneAndDelete({"_id":id}).then(()=>[
         res.status(200).send()
     ])
@@ -112,7 +110,6 @@ adminRouter.delete('/users/remove/:id', (req,res)=>{
 
 // approve user
 adminRouter.post('/users/apv',(req,res)=>{
-console.log(req.body);
 const userDetail=req.body.id;
 
 if(userDetail.post=='Partner'){

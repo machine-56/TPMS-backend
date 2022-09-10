@@ -118,4 +118,12 @@ partnerRouter.post("/multifiles", (req, res) => {
   });
 });
 
+// invocie status
+partnerRouter.get('/invoice/:id', (req,res)=>{
+  let uname=req.params.id;
+  invoiceData.find({"partner_name":uname}).then((data)=>{
+    res.send(data);
+  })
+})
+
 module.exports = partnerRouter;
