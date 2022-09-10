@@ -1,7 +1,6 @@
 const express = require("express");
 const signupRouter = express.Router();
 const newUserdata = require("../model/newuserModel");
-// const partnerData = require("../model/partnerModel");
 
 signupRouter.post("/", (req, res) => {
   var newUser = {
